@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Funnel+Display:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Funnel+Display:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,32 +8,32 @@
   :root {
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
-    
+
     --card: 0 0% 10%;
     --card-foreground: 0 0% 100%;
-    
+
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
-    
+
     --primary: 151 95% 40%;
     --primary-foreground: 0 0% 100%;
-    
+
     --secondary: 168 95% 16%;
     --secondary-foreground: 0 0% 100%;
-    
+
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
-    
+
     --accent: 151 95% 40%;
     --accent-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
+
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 151 95% 40%;
-    
+
     --radius: 0.5rem;
   }
 }
@@ -138,5 +138,14 @@
   }
   100% {
     background-position: 80px 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hiddenOnMobile {
+    display: none;
+  }
+  .visibleOnMobile {
+    display: flex;
   }
 }
