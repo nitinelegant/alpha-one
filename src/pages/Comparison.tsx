@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -22,25 +23,48 @@ const data = [
 ];
 
 const comparisons = [
-  { label: "Time Period", value1: "15.7%", value2: "14.2%" },
-  { label: "Annualized Return", value1: "8.2%", value2: "9.1%" },
-  { label: "Drawdown", value1: "1.8", value2: "1.6" },
-  { label: "Deals Closed", value1: "68%", value2: "65%" },
+  {
+    label: "Time Period",
+    value1: "15.7%",
+
+    // value2: "14.2%"
+  },
+  {
+    label: "Annualized Return",
+    value1: "8.2%",
+    //  value2: "9.1%"
+  },
+  {
+    label: "Drawdown",
+    value1: "1.8",
+
+    // value2: "1.6"
+  },
+  {
+    label: "Deals Closed",
+    value1: "68%",
+
+    // value2: "65%"
+  },
 ];
 
 const Comparison = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+
       <main className="container mx-auto px-4 pt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold mb-8 font-funnel">
-            Strategy Comparison
-          </h1>
+          <div className="flex  items-baseline gap-5">
+            <BackButton />
+            <h1 className="text-4xl font-bold mb-8 font-funnel">
+              Strategy Comparison
+            </h1>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {comparisons.map((comparison) => (
