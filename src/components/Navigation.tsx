@@ -6,11 +6,12 @@ import { Button } from "./ui/button";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const isLoggedIn = location.pathname === "/dashboard";
+  const isLoggedIn =
+    location.pathname === "/dashboard" || location.pathname === "/comparison";
 
   const links = [
     { name: "Home", path: "/" },
-    // { name: 'Home 2', path: '/home2' },
+    // { name: "Home 2", path: "/home2" },
     { name: "The Works", path: "/works" },
     { name: "Get Enlightened", path: "/enlightened" },
     { name: "The People", path: "/people" },
@@ -24,11 +25,11 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-trading-background/80 backdrop-blur-lg border-b border-white/10">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center overflow-hidden">
             <img
               src="/uploads/dc7f00dd-4fc5-4127-a10b-fd8aaa438465.png"
               alt="Logo"
-              className="h-16 w-auto"
+              className="h-16 w-auto md:h-40 md:-my-6 transition-all duration-300"
             />
           </Link>
 

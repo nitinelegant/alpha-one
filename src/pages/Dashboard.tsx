@@ -51,24 +51,45 @@ const Dashboard = () => {
             </Button>
           </div>
 
+          {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {stats.map((stat) => (
               <Card key={stat.label} className="glass-card">
                 <CardContent className="p-6">
-                  <p className="text-sm text-gray-400 font-funnel">{stat.label}</p>
-                  <p className="text-2xl font-bold font-funnel mt-2">{stat.value}</p>
+                  <p className="text-sm text-gray-400 font-funnel">
+                    {stat.label}
+                  </p>
+                  <p className="text-2xl font-bold font-funnel mt-2">
+                    {stat.value}
+                  </p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
+          <h1 className="text-2xl font-bold  font-funnel">Summary</h1>
+          {/* Summary Text */}
+          <p className="text-lg text-gray-300 font-funnel mb-8">
+            The performance overview below highlights key trends and insights
+            over the past six months. It showcases consistent growth patterns
+            with minimal drawdowns, making it an ideal time to explore new
+            opportunities.
+          </p>
+
+          {/* Performance Graph */}
           <Card className="glass-card p-6 mb-8">
-            <h2 className="text-xl font-bold mb-4 font-funnel">Performance Overview</h2>
+            <h2 className="text-xl font-bold mb-4 font-funnel">
+              Performance Overview
+            </h2>
             <div className="h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={data}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                  <XAxis dataKey="name" stroke="#666" fontFamily="Funnel Display" />
+                  <XAxis
+                    dataKey="name"
+                    stroke="#666"
+                    fontFamily="Funnel Display"
+                  />
                   <YAxis stroke="#666" fontFamily="Funnel Display" />
                   <Tooltip
                     contentStyle={{
