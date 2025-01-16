@@ -29,7 +29,7 @@ const Navigation = () => {
             <img
               src="/uploads/dc7f00dd-4fc5-4127-a10b-fd8aaa438465.png"
               alt="Logo"
-              className="h-24 w-auto md:h-40 md:-my-6 transition-all duration-300"
+              className="h-32 w-auto md:h-40 md:-my-6 transition-all duration-300"
             />
           </Link>
 
