@@ -26,7 +26,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center">
             <img
-              src="/lovable-uploads/dc7f00dd-4fc5-4127-a10b-fd8aaa438465.png"
+              src="/uploads/dc7f00dd-4fc5-4127-a10b-fd8aaa438465.png"
               alt="Logo"
               className="h-16 w-auto"
             />

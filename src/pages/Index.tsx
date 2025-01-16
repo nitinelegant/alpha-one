@@ -41,7 +41,7 @@ const HomePage = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
           style={{
-            backgroundImage: "url('/lovable-uploads/b04b1c78-2065-4377-9f4b-ae62b7490acf.png')",
+            backgroundImage: "url('/uploads/b04b1c78-2065-4377-9f4b-ae62b7490acf.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.9
