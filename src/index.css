@@ -141,11 +141,11 @@
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .hiddenOnMobile {
     display: none;
   }
   .visibleOnMobile {
     display: flex;
   }
-}
+} */
