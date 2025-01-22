@@ -45,10 +45,9 @@ const HomePage = () => {
       <main className="flex-1 relative">
         {/* Background Image */}
         <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 z-0 bg-cover  bg-no-repeat"
           style={{
-            backgroundImage:
-              "url('/uploads/b04b1c78-2065-4377-9f4b-ae62b7490acf.png')",
+            backgroundImage: "url('/uploads/herobg.png')",
             opacity: 0.9,
           }}
         />
@@ -63,15 +62,14 @@ const HomePage = () => {
               transition={{ duration: 0.8 }}
               className="w-full max-w-4xl"
             >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight font-funnel text-center">
-                from <span className="text-trading-primary">CHAOS</span> | we
-                sculpt <span className="text-trading-primary">ORDER</span>
+              <h1 className="text-[6vw] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-tight font-funnel text-center whitespace-nowrap">
+                from <span>CHAOS</span> | we sculpt <span>ORDER</span>
               </h1>
             </motion.div>
 
             {/* Features Grid */}
             <div className="w-full max-w-3xl mx-auto px-4">
-              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-3xl mx-auto ">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-md mx-auto ">
                 {features.map((feature, index) => (
                   <motion.div
                     key={feature.title}
@@ -80,7 +78,7 @@ const HomePage = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link to={feature.path} className="block h-full">
-                      <Card className="glass-card h-full p-4 group cursor-pointer flex flex-col">
+                      <Card className="glass-card h-full p-4 md:p-6 group cursor-pointer flex flex-col">
                         <div className=" mb-2 transform group-hover:scale-105 transition-transform duration-300">
                           {feature.icon}
                         </div>

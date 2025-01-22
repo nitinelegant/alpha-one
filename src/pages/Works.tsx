@@ -84,28 +84,30 @@ const Works = () => {
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto"
         >
-          <h1 className="text-5xl font-bold mb-12 font-funnel">The Works</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold  mb-4 sm:mb-8 font-funnel">
+            The Works
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 md:p-0 px-6">
             {strategies.map((strategy) => (
               <Card
                 key={strategy.title}
                 className="glass-card overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
                 onClick={() => handleStrategyClick(strategy)}
               >
-                <div className="aspect-video bg-white/5">
+                <div className="bg-white/5">
                   <img
                     src={strategy.media[0].url}
                     alt={strategy.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-36 sm:h-64 md:h-full " // Adjust height for mobile
                   />
                 </div>
-                <div className="p-6">
-                  <h2 className="text-2xl font-semibold mb-3 font-funnel">
+                <div className="p-2 sm:p-6">
+                  <h2 className="text-xl md:text-2xl mb-1 md:mb-3 font-semibold  font-funnel">
                     {strategy.title}
                   </h2>
-                  <p className="text-gray-400 font-funnel">
-                    {strategy.description}
-                  </p>
+                  {/* <p className="text-gray-400 font-funnel">
+                  {strategy.description}
+                </p> */}
                 </div>
               </Card>
             ))}
