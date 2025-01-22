@@ -14,12 +14,18 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Jan", value: 4000 },
+  { name: "Jan", value: 8000 },
   { name: "Feb", value: 3000 },
   { name: "Mar", value: 5000 },
   { name: "Apr", value: 2780 },
   { name: "May", value: 1890 },
   { name: "Jun", value: 2390 },
+  { name: "July", value: 4000 },
+  { name: "Aug", value: 3000 },
+  { name: "Sep", value: 5000 },
+  { name: "Oct", value: 2780 },
+  { name: "Nov", value: 1890 },
+  { name: "Dec", value: 2390 },
 ];
 
 const stats = [
@@ -75,7 +81,7 @@ const Dashboard = () => {
           </div>
 
           {/* Performance Graph */}
-          <Card className="w-full p-4 sm:p-6 mb-4 sm:mb-8 bg-background/80 backdrop-blur-sm border-muted">
+          <Card className="w-full mt-8 p-4 sm:p-6 mb-4 sm:mb-8 bg-background/80 backdrop-blur-sm border-muted">
             <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 font-sans">
               Performance Overview
             </h2>
@@ -87,7 +93,9 @@ const Dashboard = () => {
                 >
                   <CartesianGrid
                     strokeDasharray="3 3"
-                    stroke="hsl(var(--muted-foreground))"
+                    stroke="hsl(var(--muted-foreground) / 0.2)"
+                    vertical={true}
+                    horizontal={true}
                   />
                   <XAxis
                     dataKey="name"

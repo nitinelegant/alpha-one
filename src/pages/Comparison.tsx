@@ -92,7 +92,7 @@ const Comparison = () => {
             ))}
           </div>
 
-          <Card className="w-full p-4 sm:p-6 mb-4 sm:mb-8 bg-background/80 backdrop-blur-sm border-muted">
+          <Card className="w-full mt-8 p-4 sm:p-6 mb-4 sm:mb-8 bg-background/80 backdrop-blur-sm border-muted">
             <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4">
               Performance Comparison
             </h2>
@@ -104,7 +104,9 @@ const Comparison = () => {
                 >
                   <CartesianGrid
                     strokeDasharray="3 3"
-                    stroke="hsl(var(--muted-foreground))"
+                    stroke="hsl(var(--muted-foreground) / 0.2)"
+                    vertical={true}
+                    horizontal={true}
                   />
                   <XAxis
                     dataKey="name"

@@ -102,12 +102,12 @@ const Works = () => {
                   />
                 </div>
                 <div className="p-2 sm:p-6">
-                  <h2 className="text-xl md:text-2xl mb-1 md:mb-3 font-semibold  font-funnel">
+                  <h2 className="text-lg md:text-2xl mb-0 md:mb-3 font-semibold  font-funnel">
                     {strategy.title}
                   </h2>
-                  {/* <p className="text-gray-400 font-funnel">
-                  {strategy.description}
-                </p> */}
+                  <p className="text-gray-400 font-funnel text-xs md:text-lg">
+                    {strategy.description}
+                  </p>
                 </div>
               </Card>
             ))}
