@@ -87,7 +87,7 @@ const Works = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold  mb-4 sm:mb-8 font-funnel">
             The Works
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 md:p-0 px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 md:p-0 px-12 md:px-6 ">
             {strategies.map((strategy) => (
               <Card
                 key={strategy.title}
@@ -98,11 +98,11 @@ const Works = () => {
                   <img
                     src={strategy.media[0].url}
                     alt={strategy.title}
-                    className="w-full h-28 sm:h-64 md:h-full " // Adjust height for mobile
+                    className="w-full h-32 sm:h-64 md:h-full " // Adjust height for mobile
                   />
                 </div>
                 <div className="p-2 sm:p-6">
-                  <h2 className="text-lg md:text-2xl mb-0 md:mb-3 font-semibold  font-funnel">
+                  <h2 className="text-sm md:text-2xl mb-0 md:mb-3 font-semibold  font-funnel">
                     {strategy.title}
                   </h2>
                   <p className="text-gray-400 font-funnel text-xs md:text-lg">
