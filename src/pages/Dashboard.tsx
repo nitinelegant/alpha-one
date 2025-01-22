@@ -47,7 +47,7 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex justify-between items-center mb-4 md:mb-8">
             <h1 className="text-3xl sm:text-3xl font-bold font-funnel">
               Dashboard
             </h1>
@@ -60,7 +60,7 @@ const Dashboard = () => {
           </div>
           <h1 className="text-2xl font-bold  font-funnel mt-2">Summary</h1>
           {/* Summary Text */}
-          <p className="text-lg text-gray-300 font-funnel mb-8">
+          <p className="text-lg text-gray-300 font-funnel mb-4 md:mb-8">
             The performance overview below highlights key trends and insights
             over the past six months.
           </p>

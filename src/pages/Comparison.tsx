@@ -61,7 +61,7 @@ const Comparison = () => {
         >
           <div className="flex  items-baseline gap-5">
             <BackButton />
-            <h1 className="text-3xl sm:text-3xl font-bold mb-8 font-funneln ">
+            <h1 className="text-3xl sm:text-3xl font-bold mb-4 md:mb-8 font-funneln ">
               Strategy Comparison
             </h1>
           </div>
@@ -92,7 +92,7 @@ const Comparison = () => {
             ))}
           </div>
 
-          <Card className="w-full mt-8 p-4 sm:p-6 mb-4 sm:mb-8 bg-background/80 backdrop-blur-sm border-muted">
+          <Card className="w-full mt-8 p-4 sm:p-6 mb-4 md:mb-8 bg-background/80 backdrop-blur-sm border-muted">
             <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4">
               Performance Comparison
             </h2>

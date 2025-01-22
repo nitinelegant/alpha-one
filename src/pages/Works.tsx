@@ -98,7 +98,7 @@ const Works = () => {
                   <img
                     src={strategy.media[0].url}
                     alt={strategy.title}
-                    className="w-full h-36 sm:h-64 md:h-full " // Adjust height for mobile
+                    className="w-full h-28 sm:h-64 md:h-full " // Adjust height for mobile
                   />
                 </div>
                 <div className="p-2 sm:p-6">
