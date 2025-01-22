@@ -20,12 +20,6 @@ const data = [
   { name: "Apr", value: 2780 },
   { name: "May", value: 1890 },
   { name: "Jun", value: 2390 },
-  { name: "July", value: 4000 },
-  { name: "Aug", value: 3000 },
-  { name: "Sep", value: 5000 },
-  { name: "Oct", value: 2780 },
-  { name: "Nov", value: 1890 },
-  { name: "Dec", value: 2390 },
 ];
 
 const stats = [
