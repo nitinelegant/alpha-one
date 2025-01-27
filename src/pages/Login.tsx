@@ -43,8 +43,6 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = async (values, { setSubmitting }) => {
     // Here you would typically handle the login logic
-    console.log(values);
-
     try {
       setIsLoading(true);
       const { email, password } = values;
@@ -61,7 +59,6 @@ const Login = () => {
           "Failed to log in. Please check your credentials and try again.",
         duration: 2500,
       });
-      console.log("error---", error);
     } finally {
       setIsLoading(false);
     }
