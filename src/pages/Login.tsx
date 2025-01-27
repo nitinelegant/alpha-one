@@ -1,26 +1,72 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useToast } from "@/hooks/use-toast";
+import { AUTH_TOKEN } from "@/constants/auth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+
+  useEffect(() => {
+    const token = localStorage.getItem(AUTH_TOKEN);
+    if (token) {
+      window.location.href = "/dashboard";
+    }
+  }, []);
+
+  // Define the validation schema
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate("/dashboard");
+  // Define the initial form values
+  const initialValues = {
+    email: "",
+    password: "",
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  // Handle form submission
+  const handleSubmit = async (values, { setSubmitting }) => {
+    // Here you would typically handle the login logic
+    console.log(values);
+
+    try {
+      setIsLoading(true);
+      const { email, password } = values;
+      await login(email, password);
+      toast({
+        title: "Login Successful",
+        description: "You have successfully logged in",
+        duration: 1500,
+      });
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description:
+          "Failed to log in. Please check your credentials and try again.",
+        duration: 2500,
+      });
+      console.log("error---", error);
+    } finally {
+      setIsLoading(false);
+    }
+    // setSubmitting(false);
+    // navigate("/dashboard");
   };
 
   return (
@@ -40,48 +86,69 @@ const Login = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="username"
-                    className="text-sm font-medium font-funnel"
-                  >
-                    Username
-                  </label>
-                  <Input
-                    id="username"
-                    name="username"
-                    type="text"
-                    value={formData.username}
-                    onChange={handleChange}
-                    className="bg-background border-trading-primary font-funnel"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="password"
-                    className="text-sm font-medium font-funnel"
-                  >
-                    Password
-                  </label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="bg-background border-trading-primary font-funnel"
-                    required
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="w-full bg-trading-primary hover:bg-trading-secondary font-funnel"
-                >
-                  Login
-                </Button>
-              </form>
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+              >
+                {({ errors, touched, isSubmitting }) => (
+                  <Form className="space-y-4">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="email"
+                        className="text-sm font-medium font-funnel"
+                      >
+                        Username
+                      </label>
+                      <Field
+                        as={Input}
+                        id="email"
+                        name="email"
+                        type="text"
+                        className={`bg-background border-trading-primary font-funnel ${
+                          errors.email && touched.email ? "border-red-500" : ""
+                        }`}
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-red-500 text-sm"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="password"
+                        className="text-sm font-medium font-funnel"
+                      >
+                        Password
+                      </label>
+                      <Field
+                        as={Input}
+                        id="password"
+                        name="password"
+                        type="password"
+                        className={`bg-background border-trading-primary font-funnel ${
+                          errors.password && touched.password
+                            ? "border-red-500"
+                            : ""
+                        }`}
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="text-red-500 text-sm"
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      className="w-full bg-trading-primary hover:bg-trading-secondary font-funnel"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Logging in..." : "Login"}
+                    </Button>
+                  </Form>
+                )}
+              </Formik>
             </CardContent>
           </Card>
         </motion.div>

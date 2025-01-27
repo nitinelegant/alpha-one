@@ -1,7 +1,9 @@
 import BackButton from "@/components/BackButton";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
+import { axiosInstance } from "@/lib/axios";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -12,43 +14,61 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useToast } from "@/hooks/use-toast";
+import { AUTH_TOKEN } from "@/constants/auth";
+import { useNavigate } from "react-router-dom";
 
-const data = [
-  { name: "Jan", strategy1: 4000, strategy2: 3800 },
-  { name: "Feb", strategy1: 3000, strategy2: 3200 },
-  { name: "Mar", strategy1: 5000, strategy2: 4800 },
-  { name: "Apr", strategy1: 2780, strategy2: 2900 },
-  { name: "May", strategy1: 1890, strategy2: 2100 },
-  { name: "Jun", strategy1: 2390, strategy2: 2500 },
-];
+interface Data {
+  label: string;
+  value: number;
+}
+interface CompareData {
+  label: string;
+  value1: number;
+  value2: number;
+}
+interface GraphData {
+  name: string;
+  value1: number;
+  value2: number;
+}
 
-const comparisons = [
-  {
-    label: "Time Period",
-    value1: "15.7%",
-
-    value2: "14.2%",
-  },
-  {
-    label: "Annualized Return",
-    value1: "8.2%",
-    value2: "9.1%",
-  },
-  {
-    label: "Drawdown",
-    value1: "1.8",
-
-    value2: "1.6",
-  },
-  {
-    label: "Deals Closed",
-    value1: "68%",
-
-    value2: "65%",
-  },
-];
+interface FinancialData {
+  stats: Data[];
+  compareStats: CompareData[];
+  performance: GraphData[];
+  comparePerformance: GraphData;
+}
 
 const Comparison = () => {
+  const navigate = useNavigate();
+
+  const { toast } = useToast();
+  const [wholeData, setWholeData] = useState<FinancialData>();
+
+  useEffect(() => {
+    const token = localStorage.getItem(AUTH_TOKEN);
+    if (!token) {
+      navigate("/", { replace: true });
+      return;
+    }
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const { data } = await axiosInstance.get("/data");
+      if (data) {
+        setWholeData(data);
+      }
+    } catch (error) {
+      toast({
+        title: "Data Failed",
+        description: "Failed to fetch data. Something went wrong!.",
+        duration: 2500,
+      });
+      console.log(`error while fetching data ${error}`);
+    }
+  };
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -73,7 +93,7 @@ const Comparison = () => {
           </p>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
-            {comparisons.map((comparison) => (
+            {wholeData?.compareStats?.map((comparison) => (
               <Card key={comparison.label} className="glass-card">
                 <CardContent className="p-2 sm:p-6">
                   <p className="text-sm text-gray-400 font-funnel">
@@ -81,10 +101,10 @@ const Comparison = () => {
                   </p>
                   <div className="flex justify-between  mt-1 sm:mt-2">
                     <p className="text-lg sm:text-2xl font-bold text-trading-primary font-funnel">
-                      {comparison.value1}
+                      {comparison?.value1}
                     </p>
                     <p className="text-lg sm:text-2xl font-bold text-blue-500 font-funnel">
-                      {comparison.value2}
+                      {comparison?.value2}
                     </p>
                   </div>
                 </CardContent>
@@ -99,7 +119,7 @@ const Comparison = () => {
             <div className="h-[300px] sm:h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
-                  data={data}
+                  data={wholeData?.comparePerformance}
                   margin={{ top: 5, right: 10, left: -10, bottom: 5 }}
                 >
                   <CartesianGrid
@@ -135,7 +155,7 @@ const Comparison = () => {
                   />
                   <Line
                     type="monotone"
-                    dataKey="strategy1"
+                    dataKey="value1"
                     name="Strategy 1"
                     stroke="hsl(var(--primary))"
                     strokeWidth={2}
@@ -144,7 +164,7 @@ const Comparison = () => {
                   />
                   <Line
                     type="monotone"
-                    dataKey="strategy2"
+                    dataKey="value2"
                     name="Strategy 2"
                     stroke="#3B82F6"
                     strokeWidth={2}

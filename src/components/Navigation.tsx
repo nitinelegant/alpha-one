@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import { useAuth } from "@/context/AuthContext";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+
+  const { isAuthenticated, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const isLoggedIn =
-    location.pathname === "/dashboard" || location.pathname === "/comparison";
+  // const isLoggedIn =
+  //   location.pathname === "/dashboard" || location.pathname === "/comparison";
 
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
   const links = [
     { name: "Home", path: "/", show: isHome ? false : true },
     { name: "The Works", path: "/works", show: isHome ? false : true },
@@ -20,9 +28,15 @@ const Navigation = () => {
     },
     { name: "The People", path: "/people", show: isHome ? false : true },
     {
-      name: isLoggedIn ? "Logout" : "Login",
-      path: isLoggedIn ? "/" : "/login",
+      name: isAuthenticated ? "Dashboard" : null,
+      path: isAuthenticated ? "/dashboard" : null,
+      show: isHome ? false : true,
+    },
+    {
+      name: isAuthenticated ? "Logout" : "Login",
+      path: isAuthenticated ? "/" : "/login",
       show: true,
+      onClick: isAuthenticated ? handleLogout : undefined,
     },
   ];
 
@@ -49,6 +63,7 @@ const Navigation = () => {
                     ? "text-trading-primary active-nav-link"
                     : ""
                 }`}
+                onClick={link.onClick || (() => navigate(link.path))}
               >
                 {link.show && link.name}
               </Link>

@@ -12,29 +12,32 @@ import People from "./pages/People";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Comparison from "./pages/Comparison";
+import { AuthProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            {/* <Route path="/home2" element={<Home2 />} /> */}
-            <Route path="/works" element={<Works />} />
-            <Route path="/enlightened" element={<Enlightened />} />
-            <Route path="/people" element={<People />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/comparison" element={<Comparison />} />
-          </Routes>
-        </AnimatePresence>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              {/* <Route path="/home2" element={<Home2 />} /> */}
+              <Route path="/works" element={<Works />} />
+              <Route path="/enlightened" element={<Enlightened />} />
+              <Route path="/people" element={<People />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/comparison" element={<Comparison />} />
+            </Routes>
+          </AnimatePresence>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 

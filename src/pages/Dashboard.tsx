@@ -1,3 +1,4 @@
+"use client";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,25 +13,53 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useEffect, useState } from "react";
+import { axiosInstance } from "@/lib/axios";
+import { useToast } from "@/hooks/use-toast";
+import { AUTH_TOKEN } from "@/constants/auth";
 
-const data = [
-  { name: "Jan", value: 8000 },
-  { name: "Feb", value: 3000 },
-  { name: "Mar", value: 5000 },
-  { name: "Apr", value: 2780 },
-  { name: "May", value: 1890 },
-  { name: "Jun", value: 2390 },
-];
+interface Data {
+  label: string;
+  value: number;
+}
+interface GraphData {
+  name: string;
+  value1: number;
+  value2: number;
+}
 
-const stats = [
-  { label: "Time Period", value: "2-5 Years" },
-  { label: "Annualized Return", value: "15.7%" },
-  { label: "Drawdown", value: "8.2%" },
-  { label: "Deals Closed", value: "2,847" },
-];
+interface FinancialData {
+  performance: GraphData[];
+}
 
 const Dashboard = () => {
+  const { toast } = useToast();
   const navigate = useNavigate();
+  const [wholeData, setWholeData] = useState<FinancialData>();
+
+  useEffect(() => {
+    const token = localStorage.getItem(AUTH_TOKEN);
+    if (!token) {
+      navigate("/", { replace: true });
+      return;
+    }
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const { data } = await axiosInstance.get("/data");
+      if (data) {
+        setWholeData(data);
+      }
+    } catch (error) {
+      toast({
+        title: "Data Failed",
+        description: "Failed to fetch data. Something went wrong!.",
+        duration: 2500,
+      });
+      console.log(`error while fetching data ${error}`);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,13 +89,13 @@ const Dashboard = () => {
           </p>
           {/* Stats Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-2">
-            {stats.map((stat) => (
-              <Card key={stat.label} className="glass-card">
+            {wholeData?.stats?.map((stat, index) => (
+              <Card key={index} className="glass-card">
                 <CardContent className="p-2 sm:p-6">
                   <p className="text-sm text-gray-400 font-funnel">
                     {stat.label}
                   </p>
-                  <p className="text-lg sm:text-2xl font-bold font-funnel mt-0 sm:mt-2">
+                  <p className="text-lg sm:text-2xl font-bold font-funnel mt-0 sm:mt-2 ">
                     {stat.value}
                   </p>
                 </CardContent>
@@ -82,7 +111,7 @@ const Dashboard = () => {
             <div className="h-[300px] sm:h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
-                  data={data}
+                  data={wholeData?.performance}
                   margin={{ top: 5, right: 10, left: -10, bottom: 5 }}
                 >
                   <CartesianGrid
