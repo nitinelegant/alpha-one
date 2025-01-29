@@ -38,6 +38,7 @@ interface FinancialData {
   compareStats: CompareData[];
   performance: GraphData[];
   comparePerformance: GraphData;
+  labels: string[];
 }
 
 const Comparison = () => {
@@ -156,7 +157,7 @@ const Comparison = () => {
                   <Line
                     type="monotone"
                     dataKey="value1"
-                    name="Strategy 1"
+                    name={wholeData?.labels[0]}
                     stroke="hsl(var(--primary))"
                     strokeWidth={2}
                     dot={{ r: 4 }}
@@ -165,7 +166,7 @@ const Comparison = () => {
                   <Line
                     type="monotone"
                     dataKey="value2"
-                    name="Strategy 2"
+                    name={wholeData?.labels[1]}
                     stroke="#3B82F6"
                     strokeWidth={2}
                     dot={{ r: 4 }}

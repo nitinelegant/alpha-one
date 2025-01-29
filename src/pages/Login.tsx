@@ -31,7 +31,7 @@ const Login = () => {
       .required("Email is required"),
     password: Yup.string()
       .required("Password is required")
-      .min(6, "Password must be at least 6 characters"),
+      .min(2, "Password must be at least 2 characters"),
   });
 
   // Define the initial form values

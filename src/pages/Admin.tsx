@@ -8,8 +8,10 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { AUTH_TOKEN } from "@/constants/auth";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Admin() {
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [dataFile, setDataFile] = useState<File | null>(null);
@@ -53,8 +55,8 @@ export default function Admin() {
     }
     setLoading(true);
     const formData = new FormData();
-    if (dataFile) formData.append("dataFile", dataFile);
-    if (userFile) formData.append("userFile", userFile);
+    if (dataFile) formData.append("data", dataFile);
+    if (userFile) formData.append("users", userFile);
 
     try {
       const { data } = await axiosInstance.post("/data/upload", formData, {
@@ -83,18 +85,28 @@ export default function Admin() {
     }
   };
 
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen h-screen bg-black flex flex-col">
-      <header className="bg-black shadow-lg">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1
-            className="text-xl font-bold text-white cursor-pointer"
-            onClick={() => navigate("/")}
-          >
-            Admin
-          </h1>
-        </div>
-      </header>
+      <div className="flex justify-between items-center p-4 px-10">
+        <h2
+          className="text-xl font-bold text-white cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Admin
+        </h2>
+        <h2
+          className="text-xl font-bold text-white cursor-pointer"
+          onClick={() => handleLogout()}
+        >
+          Logout
+        </h2>
+      </div>
+
       <main className="flex-grow flex flex-col items-center justify-center gap-4">
         <div className="flex gap-4">
           <div>
