@@ -23,17 +23,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const { accessToken } = await authApi.login({ email, password });
+    const { accessToken, admin } = await authApi.login({ email, password });
+
+    console.log("admin", admin);
 
     if (accessToken) {
       localStorage.setItem(AUTH_TOKEN, accessToken);
+      localStorage.setItem("user", JSON.stringify({ admin }));
       setIsAuthenticated(true);
-      window.location.href = "/dashboard";
+      if (admin) {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/dashboard";
+      }
     }
   };
 
   const logout = () => {
     localStorage.removeItem(AUTH_TOKEN);
+    localStorage.clear();
     setIsAuthenticated(false);
     window.location.href = "/";
   };

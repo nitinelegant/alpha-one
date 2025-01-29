@@ -2,7 +2,9 @@
 import { AUTH_TOKEN, USER } from "@/constants/auth";
 import axios from "axios";
 
-const baseURL = "http://3.109.152.190:3000/api/v1"; //process.env.NEXT_PUBLIC_API_URL ||
+const baseURL =
+  // import.meta.env.VITE_API_KEY ||
+  "http://3.109.152.190:3000/api/v1"; //process.env.NEXT_PUBLIC_API_URL ||
 
 export const axiosInstance = axios.create({
   baseURL,

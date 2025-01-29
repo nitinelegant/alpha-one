@@ -3,7 +3,7 @@ import { UserResponse } from "@/types/authTypes";
 
 interface LoginResponse {
   accessToken: string;
-  type: number;
+  admin: boolean;
 }
 
 interface LoginCredentials {
