@@ -39,6 +39,7 @@ interface FinancialData {
   performance: GraphData[];
   comparePerformance: GraphData;
   labels: string[];
+  comparisonSummary: string;
 }
 
 const Comparison = () => {
@@ -89,8 +90,7 @@ const Comparison = () => {
           <h1 className="text-2xl font-bold  font-funnel mt-2">Summary</h1>
           {/* Summary Text */}
           <p className="text-lg text-gray-300 font-funnel mb-8">
-            The performance overview below highlights key trends and insights
-            over the past six months.
+            {wholeData?.comparisonSummary}
           </p>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">

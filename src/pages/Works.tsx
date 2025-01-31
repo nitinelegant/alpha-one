@@ -12,53 +12,69 @@ interface Strategy {
     type: "image" | "video";
     url: string;
   }>;
+  subMedia: Array<{
+    type: "image" | "video";
+    url: string;
+  }>;
 }
 
 const strategies: Strategy[] = [
   {
-    title: "Trend Following",
-    description: "A systematic approach to capturing market trends",
+    title: "Hybrid Trend-Following",
+    description:
+      "Fusing qualitative insights with quantitative data to capture trends of the future.",
+    subMedia: [
+      {
+        type: "image",
+        url: "hybrid_trend.jpg",
+      },
+    ],
     media: [
       {
         type: "image",
         url: "/trend-following.png",
       },
-      {
-        type: "image",
-        url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg",
-      },
-      {
-        type: "image",
-        url: "https://www.shutterstock.com/shutterstock/photos/2517281125/display_1500/stock-photo-colorado-fall-hike-in-breckenridge-2517281125.jpg",
-      },
-      { type: "video", url: "https://example.com/video.mp4" },
-      { type: "image", url: "/placeholder.svg" },
+
+      // {
+      //   type: "image",
+      //   url: "https://www.shutterstock.com/shutterstock/photos/2517281125/display_1500/stock-photo-colorado-fall-hike-in-breckenridge-2517281125.jpg",
+      // },
+      // { type: "video", url: "https://example.com/video.mp4" },
+      // { type: "image", url: "/placeholder.svg" },
     ],
   },
   {
-    title: "Stat Arbitrage",
-    description: "Statistical arbitrage strategies for market inefficiencies",
-    media: [
-      { type: "image", url: "/stat-arbitrage.png" },
+    title: "Statistical Arbitrage",
+    description:
+      "Uncovering future asset relationships beyond historical patterns",
+    subMedia: [
       {
         type: "image",
-        url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg",
+        url: "Statistical_Arbitrage.jpg",
       },
-      { type: "image", url: "/placeholder.svg" },
+    ],
+    media: [
+      { type: "image", url: "/stat-arbitrage.png" },
+
+      // { type: "image", url: "/placeholder.svg" },
       // { type: "video", url: "https://example.com/video2.mp4" },
     ],
   },
   {
-    title: "Gamma Scale",
-    description: "Options-based scaling strategies",
-    media: [
-      { type: "image", url: "/gamma-scale.png" },
+    title: "Options Arbitrage",
+    description:
+      "Utilizing the market inefficiencies in options space from pricing to liquidity dislocations.",
+    subMedia: [
       {
         type: "image",
-        url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg",
+        url: "Options_Arbitrage.jpg",
       },
-      { type: "image", url: "/graph-mix.png" },
-      { type: "image", url: "/graph-mix.svg" },
+    ],
+    media: [
+      { type: "image", url: "/gamma-scale.png" },
+
+      // { type: "image", url: "/graph-mix.png" },
+      // { type: "image", url: "/graph-mix.svg" },
     ],
   },
 ];
@@ -143,15 +159,16 @@ const Works = () => {
           {currentStrategy && (
             <div className="relative h-[100vh] lg:h-[90vh]">
               <div className="h-full w-full flex items-center justify-center">
-                {currentStrategy.media[currentMediaIndex].type === "video" ? (
+                {currentStrategy.subMedia[currentMediaIndex].type ===
+                "video" ? (
                   <video
-                    src={currentStrategy.media[currentMediaIndex].url}
+                    src={currentStrategy.subMedia[currentMediaIndex].url}
                     className="w-full h-full object-contain"
                     controls
                   />
                 ) : (
                   <img
-                    src={currentStrategy.media[currentMediaIndex].url}
+                    src={currentStrategy.subMedia[currentMediaIndex].url}
                     alt=""
                     className="w-full h-full object-contain"
                   />
@@ -159,7 +176,7 @@ const Works = () => {
               </div>
 
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                {currentStrategy.media.map((_, index) => (
+                {currentStrategy.subMedia.map((_, index) => (
                   <button
                     key={index}
                     className={`w-2 h-2 rounded-full transition-colors ${

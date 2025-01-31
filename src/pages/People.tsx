@@ -4,19 +4,31 @@ import { motion } from "framer-motion";
 
 const teamMembers = [
   {
-    name: "John Doe",
-    role: "Founder & Lead Quantitative Trader",
+    name: "Jatin Singh",
+    role: "Founder",
     image: "/people.jpg",
-    bio: "With over 15 years of experience in quantitative trading, John leads our strategy development and research initiatives.",
+    bio: `The early years (2003–2005) saw him as a ring trader at a local broker, marked by relentless
+efforts to chase market tips and the pursuit of quick profits. Losses were frequent, but they
+laid the foundation for understanding what not to do.
+Inspired by setbacks and failures, he taught himself everything necessary to make sense of
+the puzzle. A disciplined approach emerged, allowing him to navigate the turbulence of the
+2008 global bear market with a net short portfolio.
+Between 2009 and 2012, curiosity led him to explore programming, enabling him to
+transition into systematic trading. This shift allowed him to develop and implement
+strategies across global currency and commodity markets.
+By 2016, his journey expanded into statistical arbitrage, diving deep into data and
+mathematics to achieve consistency and a higher Sharpe ratio`,
     setupImages: ["/people.jpg", "/people.jpg"],
     setupDescription:
       "High-performance trading setup with multiple monitors for real-time market analysis and automated trading systems.",
   },
   {
-    name: "Jane Smith",
-    role: "Head of Technology",
+    name: "Tarun Singh: ",
+    role: "CO-Founder",
     image: "/people.jpg",
-    bio: "Jane brings extensive experience in high-frequency trading systems and infrastructure optimization.",
+    bio: `2013 Dropped out of school. His first book, Trading for Dummies, set him on a path from trading to programming across
+multiple languages. By 2014, Developed and programmed his first systematic trading system, executing trades in major commodities on Indian exchanges and the Globex. By 2016 to 2017, Began back testing complex strategies in the options and arbitrage space.
+He found his passion in deep quant, an intersection of computer science, market microstructure, and applied math, uncovering alpha in places others might overlook. 2021, Continuous research and development keep him engaged, with his curiosity leading him into the evolving world of artificial intelligence and its potential applications in trading. A deep seeker`,
     setupImages: ["/people.jpg", "/people.jpg"],
     setupDescription:
       "Custom-built workstation optimized for complex computational tasks and algorithm development.",
@@ -34,7 +46,7 @@ const People = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-3xl sm:text-3xl font-bold mb-6 md:mb-12 font-funnel">
-            The People
+            The people and the story
           </h1>
 
           <div className="space-y-12 sm:space-y-24">
@@ -66,7 +78,7 @@ const People = () => {
                           <span className="md:hidden block">
                             <TextCarousel
                               text={member?.bio}
-                              characterLimit={100}
+                              characterLimit={200}
                             />
                           </span>
                           <span className="hidden md:block">{member?.bio}</span>
@@ -93,7 +105,7 @@ const People = () => {
                           <span className="md:hidden block">
                             <TextCarousel
                               text={member?.bio}
-                              characterLimit={100}
+                              characterLimit={200}
                             />
                           </span>
                           <span className="hidden md:block">{member?.bio}</span>

@@ -30,6 +30,7 @@ interface GraphData {
 
 interface FinancialData {
   performance: GraphData[];
+  dashboardSummary: string;
 }
 
 const Dashboard = () => {
@@ -84,8 +85,7 @@ const Dashboard = () => {
           <h1 className="text-2xl font-bold  font-funnel mt-2">Summary</h1>
           {/* Summary Text */}
           <p className="text-lg text-gray-300 font-funnel mb-4 md:mb-8">
-            The performance overview below highlights key trends and insights
-            over the past six months.
+            {wholeData?.dashboardSummary}
           </p>
           {/* Stats Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-2">
