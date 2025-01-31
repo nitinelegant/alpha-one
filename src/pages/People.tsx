@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import TextCarousel from "@/components/TextCarousel";
 import { motion } from "framer-motion";
 
 const teamMembers = [
@@ -62,7 +63,13 @@ const People = () => {
                           {member.role}
                         </p>
                         <p className="text-gray-300 text-lg font-funnel">
-                          {member.bio}
+                          <span className="md:hidden block">
+                            <TextCarousel
+                              text={member?.bio}
+                              characterLimit={100}
+                            />
+                          </span>
+                          <span className="hidden md:block">{member?.bio}</span>
                         </p>
                       </div>
                     </>
@@ -83,7 +90,13 @@ const People = () => {
                           {member.role}
                         </p>
                         <p className="text-gray-300 text-lg font-funnel">
-                          {member.bio}
+                          <span className="md:hidden block">
+                            <TextCarousel
+                              text={member?.bio}
+                              characterLimit={100}
+                            />
+                          </span>
+                          <span className="hidden md:block">{member?.bio}</span>
                         </p>
                       </div>
                     </>
