@@ -23,8 +23,14 @@ const strategies: Strategy[] = [
         type: "image",
         url: "/trend-following.png",
       },
-      { type: "image", url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg" },
-      { type: "image", url: "https://www.shutterstock.com/shutterstock/photos/2517281125/display_1500/stock-photo-colorado-fall-hike-in-breckenridge-2517281125.jpg" },
+      {
+        type: "image",
+        url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg",
+      },
+      {
+        type: "image",
+        url: "https://www.shutterstock.com/shutterstock/photos/2517281125/display_1500/stock-photo-colorado-fall-hike-in-breckenridge-2517281125.jpg",
+      },
       { type: "video", url: "https://example.com/video.mp4" },
       { type: "image", url: "/placeholder.svg" },
     ],
@@ -34,7 +40,10 @@ const strategies: Strategy[] = [
     description: "Statistical arbitrage strategies for market inefficiencies",
     media: [
       { type: "image", url: "/stat-arbitrage.png" },
-      { type: "image", url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg" },
+      {
+        type: "image",
+        url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg",
+      },
       { type: "image", url: "/placeholder.svg" },
       // { type: "video", url: "https://example.com/video2.mp4" },
     ],
@@ -44,7 +53,10 @@ const strategies: Strategy[] = [
     description: "Options-based scaling strategies",
     media: [
       { type: "image", url: "/gamma-scale.png" },
-      { type: "image", url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg" },
+      {
+        type: "image",
+        url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg",
+      },
       { type: "image", url: "/graph-mix.png" },
       { type: "image", url: "/graph-mix.svg" },
     ],
@@ -123,7 +135,7 @@ const Works = () => {
         <DialogContent className="sm:max-w-[90vw] md:max-w-[70vw] lg:max-w-[90vw] bg-trading-card border-trading-primary/20 p-0">
           <button
             onClick={() => setOpen(false)}
-            className="absolute right-4 top-4 z-50 rounded-full bg-black/50 p-2 hover:bg-black/70 transition-colors"
+            className="absolute right-4 top-10 z-50 rounded-full bg-black/50 p-2 hover:bg-black/70 transition-colors"
           >
             <X className="h-6 w-6 text-white" />
           </button>
