@@ -23,7 +23,7 @@ mathematics to achieve consistency and a higher Sharpe ratio`,
       "High-performance trading setup with multiple monitors for real-time market analysis and automated trading systems.",
   },
   {
-    name: "Tarun Singh: ",
+    name: "Tarun Singh",
     role: "CO-Founder",
     image: "/people.jpg",
     bio: `2013 Dropped out of school. His first book, Trading for Dummies, set him on a path from trading to programming across
