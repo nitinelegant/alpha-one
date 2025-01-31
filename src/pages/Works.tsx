@@ -23,6 +23,8 @@ const strategies: Strategy[] = [
         type: "image",
         url: "/trend-following.png",
       },
+      { type: "image", url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg" },
+      { type: "image", url: "https://www.shutterstock.com/shutterstock/photos/2517281125/display_1500/stock-photo-colorado-fall-hike-in-breckenridge-2517281125.jpg" },
       { type: "video", url: "https://example.com/video.mp4" },
       { type: "image", url: "/placeholder.svg" },
     ],
@@ -32,6 +34,7 @@ const strategies: Strategy[] = [
     description: "Statistical arbitrage strategies for market inefficiencies",
     media: [
       { type: "image", url: "/stat-arbitrage.png" },
+      { type: "image", url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg" },
       { type: "image", url: "/placeholder.svg" },
       // { type: "video", url: "https://example.com/video2.mp4" },
     ],
@@ -41,6 +44,7 @@ const strategies: Strategy[] = [
     description: "Options-based scaling strategies",
     media: [
       { type: "image", url: "/gamma-scale.png" },
+      { type: "image", url: "https://www.shutterstock.com/image-photo/vertical-portrait-spring-canada-rocky-600w-1121425697.jpg" },
       { type: "image", url: "/graph-mix.png" },
       { type: "image", url: "/graph-mix.svg" },
     ],
@@ -116,7 +120,7 @@ const Works = () => {
       </main>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[90vw] md:max-w-[80vw] lg:max-w-[1200px] bg-trading-card border-trading-primary/20 p-0">
+        <DialogContent className="sm:max-w-[90vw] md:max-w-[70vw] lg:max-w-[90vw] bg-trading-card border-trading-primary/20 p-0">
           <button
             onClick={() => setOpen(false)}
             className="absolute right-4 top-4 z-50 rounded-full bg-black/50 p-2 hover:bg-black/70 transition-colors"
@@ -125,19 +129,19 @@ const Works = () => {
           </button>
 
           {currentStrategy && (
-            <div className="relative">
-              <div className="w-full aspect-video">
+            <div className="relative h-[100vh] lg:h-[90vh]">
+              <div className="h-full w-full flex items-center justify-center">
                 {currentStrategy.media[currentMediaIndex].type === "video" ? (
                   <video
                     src={currentStrategy.media[currentMediaIndex].url}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     controls
                   />
                 ) : (
                   <img
                     src={currentStrategy.media[currentMediaIndex].url}
                     alt=""
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 )}
               </div>
