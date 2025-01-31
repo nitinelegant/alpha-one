@@ -68,7 +68,7 @@ export default function TextCarousel({
         <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-black hover:bg-background/90 transition-opacity opacity-90 hover:opacity-100" />
         <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-black hover:bg-background/90 transition-opacity opacity-90 hover:opacity-100" />
       </Carousel>
-      <div className="flex justify-center gap-2 mt-4">
+      {/* <div className="flex justify-center gap-2 mt-4">
         {textChunks.map((_, index) => (
           <button
             key={index}
@@ -78,7 +78,7 @@ export default function TextCarousel({
             onClick={() => api?.scrollTo(index)}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
