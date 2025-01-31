@@ -135,7 +135,7 @@ const Works = () => {
         <DialogContent className="sm:max-w-[90vw] md:max-w-[70vw] lg:max-w-[90vw] bg-trading-card border-trading-primary/20 p-0">
           <button
             onClick={() => setOpen(false)}
-            className="absolute right-4 top-10 z-50 rounded-full bg-black/50 p-2 hover:bg-black/70 transition-colors"
+            className="absolute right-4 top-20 z-50 rounded-full bg-black/50 p-2 hover:bg-black/70 transition-colors"
           >
             <X className="h-6 w-6 text-white" />
           </button>
