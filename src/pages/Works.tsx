@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useSwipeable } from "react-swipeable";
 
 interface Strategy {
   title: string;
@@ -84,6 +85,14 @@ const Works = () => {
   const [currentStrategy, setCurrentStrategy] = useState<Strategy | null>(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
+  useEffect(() => {
+    console.log("Component mounted");
+  }, []);
+
+  useEffect(() => {
+    console.log("Current media index:", currentMediaIndex);
+  }, [currentMediaIndex]);
+
   const handleStrategyClick = (strategy: Strategy) => {
     setCurrentStrategy(strategy);
     setCurrentMediaIndex(0);
@@ -92,19 +101,38 @@ const Works = () => {
 
   const handleNext = () => {
     if (currentStrategy) {
-      setCurrentMediaIndex((prev) =>
-        prev === currentStrategy.media.length - 1 ? 0 : prev + 1
-      );
+      setCurrentMediaIndex((prev) => {
+        const next =
+          prev === currentStrategy.subMedia.length - 1 ? 0 : prev + 1;
+        console.log("Moving to next:", next);
+        return next;
+      });
     }
   };
 
   const handlePrev = () => {
     if (currentStrategy) {
-      setCurrentMediaIndex((prev) =>
-        prev === 0 ? currentStrategy.media.length - 1 : prev - 1
-      );
+      setCurrentMediaIndex((prev) => {
+        const next =
+          prev === 0 ? currentStrategy.subMedia.length - 1 : prev - 1;
+        console.log("Moving to prev:", next);
+        return next;
+      });
     }
   };
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      console.log("Swiped left");
+      handleNext();
+    },
+    onSwipedRight: () => {
+      console.log("Swiped right");
+      handlePrev();
+    },
+    trackMouse: true,
+    preventDefaultTouchmoveEvent: true,
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -128,7 +156,7 @@ const Works = () => {
               >
                 <div className="bg-white/5">
                   <img
-                    src={strategy.media[0].url}
+                    src={strategy.media[0].url || "/placeholder.svg"}
                     alt={strategy.title}
                     className="w-full h-32 sm:h-64 md:h-full " // Adjust height for mobile
                   />
@@ -157,7 +185,10 @@ const Works = () => {
           </button>
 
           {currentStrategy && (
-            <div className="relative h-[100vh] lg:h-[90vh]">
+            <div
+              {...swipeHandlers}
+              className="relative h-[100vh] lg:h-[90vh] touch-pan-y"
+            >
               <div className="h-full w-full flex items-center justify-center">
                 {currentStrategy.subMedia[currentMediaIndex].type ===
                 "video" ? (
@@ -168,14 +199,17 @@ const Works = () => {
                   />
                 ) : (
                   <img
-                    src={currentStrategy.subMedia[currentMediaIndex].url}
+                    src={
+                      currentStrategy.subMedia[currentMediaIndex].url ||
+                      "/placeholder.svg"
+                    }
                     alt=""
                     className="w-full h-full object-contain"
                   />
                 )}
               </div>
 
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {currentStrategy.subMedia.map((_, index) => (
                   <button
                     key={index}
@@ -191,14 +225,14 @@ const Works = () => {
 
               <button
                 onClick={handlePrev}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 p-2 rounded-full hover:bg-black/70 transition-colors"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 p-2 rounded-full hover:bg-black/70 transition-colors hidden sm:block"
               >
                 <span className="sr-only">Previous</span>←
               </button>
 
               <button
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 p-2 rounded-full hover:bg-black/70 transition-colors"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 p-2 rounded-full hover:bg-black/70 transition-colors hidden sm:block"
               >
                 <span className="sr-only">Next</span>→
               </button>

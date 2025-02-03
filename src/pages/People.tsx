@@ -61,11 +61,13 @@ const People = () => {
                   {index % 2 === 0 ? (
                     <>
                       <div className="space-y-4">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-full h-32 sm:h-64 md:h-68 object-cover rounded-lg"
-                        />
+                        <div className="w-full aspect-square md:aspect-auto">
+                          <img
+                            src={member.image || "/placeholder.svg"}
+                            alt={member.name}
+                            className="w-full h-full md:h-64 object-cover rounded-lg"
+                          />
+                        </div>
                       </div>
                       <div className="space-y-1 md:space-y-4">
                         <h2 className="text-3xl font-bold font-funnel">
@@ -88,11 +90,13 @@ const People = () => {
                   ) : (
                     <>
                       <div className="space-y-4 md:order-2">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-full h-32 sm:h-64 md:h-68 object-cover rounded-lg"
-                        />
+                        <div className="w-full aspect-square md:aspect-auto">
+                          <img
+                            src={member.image || "/placeholder.svg"}
+                            alt={member.name}
+                            className="w-full h-full md:h-64 object-cover rounded-lg"
+                          />
+                        </div>
                       </div>
                       <div className="space-y-1 md:space-y-4 md:order-1">
                         <h2 className="text-3xl font-bold font-funnel">
