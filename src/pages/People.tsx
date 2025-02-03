@@ -60,8 +60,8 @@ const People = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 items-center">
                   {index % 2 === 0 ? (
                     <>
-                      <div className="space-y-0 md:space-y-4 px-28 md:px-0">
-                        <div className="w-full h-32 md:h-64 relative">
+                      <div className="space-y-0 md:space-y-4  flex  justify-center items-center">
+                        <div className="w-[125px] h-[125px] md:w-[400px] md:h-[400px] relative">
                           <img
                             src={member.image || "/placeholder.svg"}
                             alt={member.name}
@@ -89,8 +89,8 @@ const People = () => {
                     </>
                   ) : (
                     <>
-                      <div className="space-y-0 md:space-y-4 px-28 md:px-0">
-                        <div className="w-full h-32 md:h-64 relative">
+                      <div className="space-y-0 md:space-y-4  flex  justify-center items-center md:order-2">
+                        <div className="w-[125px] h-[125px] md:w-[400px] md:h-[400px] relative">
                           <img
                             src={member.image || "/placeholder.svg"}
                             alt={member.name}
