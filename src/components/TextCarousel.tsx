@@ -52,14 +52,16 @@ export default function TextCarousel({
   }, [api]);
 
   return (
-    <div className="relative w-full mt-4">
+    <div className="relative w-full mt-1">
       <Carousel className="w-full h-full" setApi={setApi}>
         <CarouselContent>
           {textChunks.map((chunk, index) => (
             <CarouselItem key={index}>
               <Card>
-                <CardContent className="flex p-2 h-[150px]">
-                  <p className="text-gray-300 text-lg font-funnel">{chunk}</p>
+                <CardContent className="flex p-2 h-[100px]">
+                  <p className="text-gray-300 text-sm md:text-lg font-funnel">
+                    {chunk}
+                  </p>
                 </CardContent>
               </Card>
             </CarouselItem>
