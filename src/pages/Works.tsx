@@ -147,7 +147,7 @@ const Works = () => {
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold  mb-3 sm:mb-8 font-funnel">
             The Works
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 md:p-0 px-12 md:px-6 ">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 md:p-0 px-10 md:px-6 ">
             {strategies.map((strategy) => (
               <Card
                 key={strategy.title}
